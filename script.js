@@ -17,6 +17,23 @@ function webscript() {
   }
   init();
 
+  //fetch quote
+  async function fetchQuote(){
+    let raw = await fetch('https://api.quotable.io/quotes/random');
+    let final = await raw.json();
+    // console.log(final[0].content, final[0].author);
+    return final;
+  }
+  fetchQuote().then(quote => displayQuoteInDom(quote));
+
+  function displayQuoteInDom(quote){
+    let quoteEle = document.querySelector('#quote');
+    quoteEle.innerHTML=`<i>${quote[0].content}</i>`;
+
+    let author = document.querySelector('#author');
+    author.innerHTML = `<i>${quote[0].author}</i>`;
+  }
+
   //add evnet listener to + button (using form)
   const form = document.querySelector("#todo-data");
   form.addEventListener("submit", (e) => {

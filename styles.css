@@ -7,3 +7,6 @@ body {
 header {
   color: white;
 }
+figure, figcaption{
+  color: whitesmoke !important;
+}
